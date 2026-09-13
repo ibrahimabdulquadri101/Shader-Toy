@@ -19,3 +19,9 @@ add_executable(ShaderToy
 )
 
 target_link_libraries(ShaderToy OpenGL::GL glfw)
+
+add_custom_command(TARGET ShaderToy POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+        ${CMAKE_SOURCE_DIR}/shaders
+        ${CMAKE_CURRENT_BINARY_DIR}/shaders
+)
