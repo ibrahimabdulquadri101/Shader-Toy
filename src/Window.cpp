@@ -37,7 +37,8 @@ bool Window::init(int width, int height, const std::string& title)
         return false;
     }
 
-    glViewport(0, 0, width, height);
+    glfwGetFramebufferSize(handle, &this->width, &this->height);
+    glViewport(0, 0, this->width, this->height);
     return true;
 }
 
@@ -57,6 +58,12 @@ void Window::swapBuffers()
 void Window::pollEvents()
 {
     glfwPollEvents();
+
+    if (handle)
+    {
+        glfwGetFramebufferSize(handle, &width, &height);
+        glViewport(0, 0, width, height);
+    }
 }
 
 void Window::getMousePosition(double& x, double& y)
@@ -98,4 +105,9 @@ void Window::terminate()
         handle = nullptr;
     }
     glfwTerminate();
+}
+
+bool Window::isMouseButtonPressed(int button)
+{
+    return handle && glfwGetMouseButton(handle, button) == GLFW_PRESS;
 }

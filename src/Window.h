@@ -20,6 +20,7 @@ public:
     void pollEvents();
     void getMousePosition(double& x, double& y);
     bool isKeyPressed(int key);
+    bool isMouseButtonPressed(int button);
     int getWidth();
     int getHeight();
     void terminate();

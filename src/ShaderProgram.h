@@ -7,13 +7,17 @@ class ShaderProgram
         unsigned int programID;
         std::string vertexPath;
         std::string fragmentPath;
+        std::string channelDeclarations;
         //helper functions
         unsigned int compileShader(std::string source, unsigned int type);
         std::string readFile(std::string filePath);
         bool checkCompileErrors(unsigned int shader, std::string type);
+        std::string sanitizeSource(std::string source);
+        std::string wrapShadertoySource(std::string source);
 
     public:
-        bool load(std::string vertexPath, std::string fragmentPath);
+        bool load(std::string vertexPath, std::string fragmentPath,
+                  std::string channelDeclarations = "");
         bool reload();
         void use();
         void cleanup();

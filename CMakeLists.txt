@@ -16,6 +16,7 @@ add_executable(ShaderToy
     src/ShaderProgram.cpp
     src/FileWatcher.cpp
     src/Quad.cpp
+    src/TextureGenerator.cpp
 )
 
 target_link_libraries(ShaderToy OpenGL::GL glfw)
